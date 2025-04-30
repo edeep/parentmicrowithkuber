@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-service-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: webapp-service
+  template:
+    metadata:
+      labels:
+        app: webapp-service
+    spec:
+      containers:
+        - name: webapp-service-container
+          image: pradeepdhavakumar/webapp-service-image
+          ports:
+            - containerPort: 8030  # Change this if your app uses a different port
