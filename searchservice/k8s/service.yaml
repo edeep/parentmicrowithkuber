@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: search-service
+spec:
+  type: ClusterIP
+  selector:
+    app: search-service
+  ports:
+    - port: 80               # Port to expose within the cluster
+      targetPort: 8031       # Port your container listens on
+      #nodePort: 30081        # External access port (adjust as needed, range: 30000–32767)

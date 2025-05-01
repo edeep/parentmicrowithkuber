@@ -29,5 +29,6 @@
   
   <modules>
   	<module>webappservice</module>
+  	<module>searchservice</module>
   </modules>
 </project>
