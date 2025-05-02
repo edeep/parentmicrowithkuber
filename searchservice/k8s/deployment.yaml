@@ -11,9 +11,13 @@ spec:
     metadata:
       labels:
         app: search-service
+      annotations:
+         prometheus.io/scrape: "true"
+         prometheus.io/port: "8031"
+         prometheus.io/path: "/actuator/prometheus"
     spec:
       containers:
         - name: search-service-container
-          image: pradeepdhavakumar/searchserviceimage:1.1
+          image: pradeepdhavakumar/searchserviceimage:1.4
           ports:
             - containerPort: 8031  # Change this if your app uses a different port

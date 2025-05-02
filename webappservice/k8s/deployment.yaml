@@ -11,9 +11,13 @@ spec:
     metadata:
       labels:
         app: webapp-service
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8030"
+        prometheus.io/path: "/actuator/prometheus"
     spec:
       containers:
         - name: webapp-service-container
-          image: pradeepdhavakumar/webapp-service-image:1.5
+          image: pradeepdhavakumar/webapp-service-image:1.7
           ports:
             - containerPort: 8030  # Change this if your app uses a different port
