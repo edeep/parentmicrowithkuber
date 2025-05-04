@@ -18,6 +18,6 @@ spec:
     spec:
       containers:
         - name: search-service-container
-          image: pradeepdhavakumar/searchserviceimage:1.4
+          image: pradeepdhavakumar/searchserviceimage:1.5
           ports:
             - containerPort: 8031  # Change this if your app uses a different port

@@ -18,6 +18,7 @@ public class SearchController {
 	@Autowired
 	private KeyValueService keyValueService;
 	
+	
 	@GetMapping("/check")
 	public String getStatus() {
 		return "Search Service Controller is up";

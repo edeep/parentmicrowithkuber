@@ -18,6 +18,6 @@ spec:
     spec:
       containers:
         - name: webapp-service-container
-          image: pradeepdhavakumar/webapp-service-image:1.7
+          image: pradeepdhavakumar/webapp-service-image:1.8
           ports:
             - containerPort: 8030  # Change this if your app uses a different port
