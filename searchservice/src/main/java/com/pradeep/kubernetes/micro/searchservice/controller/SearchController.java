@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pradeep.kubernetes.micro.searchservice.exception.ResourceNotFoundException;
 import com.pradeep.kubernetes.micro.searchservice.service.KeyValueService;
 
 import reactor.core.publisher.Mono;
@@ -19,11 +20,15 @@ public class SearchController {
 	@Autowired
 	private KeyValueService keyValueService;
 	
+	@Value(value = "${simulate.error.value}")
+	private String errorStringValue;
 	
 	
 	@GetMapping("/check")
 	public String getStatus() {
-		return "Search Service Controller is up";
+		//this is called using Feign client
+			return "Search Service Controller is up";	
+		
 	}
 	
 	@GetMapping("/check2")

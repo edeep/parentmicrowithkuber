@@ -34,6 +34,18 @@ public class DefaultSearchController {
 	       
 	  }
 	 
+		@GetMapping("/simulateErrorUsingFeignClient")
+		public String simulateErrorUsingFeignClient() {
+			//this is called using Feign client
+			if ("ResourceNotFound".equals(errorStringValue)) {
+	            throw new ResourceNotFoundException("Item with id " + errorStringValue + " not found");
+	        }
+			else {
+				return "Search Service Controller is up";	
+			}
+			
+		}
+	 
 	 @GetMapping("/checkUserName")
 	    public Mono<String> checkUserName() {
 	        return Mono.just("UserName is   ->  " + r2dbcUsername);

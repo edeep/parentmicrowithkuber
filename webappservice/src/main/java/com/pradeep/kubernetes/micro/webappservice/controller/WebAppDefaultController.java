@@ -30,12 +30,18 @@ public class WebAppDefaultController {
 	}
 	
 	
-	@GetMapping("/getErrorString")
-	public Mono<ResponseEntity<String>> getErrorString() {
-		logger.debug("Inside  getErrorStringFromSearchService");
+	@GetMapping("/simulateErrorUsingWebClient")
+	public Mono<ResponseEntity<String>> simulateErrorUsingWebClient() {
+		logger.debug("Inside  simulateErrorUsingFeignClient");
 		return searchService.getErrorStringFromSearchService().map(ResponseEntity::ok)
 		        .onErrorResume(CustomResourceNotFoundException.class, ex ->
 	            Mono.just(ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage()))
 	        );
+	}
+	
+	@GetMapping("/simulateErrorUsingFeignClient")
+	public String simulateErrorUsingFeignClient() {
+		logger.debug("Inside simulateErrorUsingFeignClient");
+		return searchService.simulateErrorUsingFeignClient();
 	}
 }

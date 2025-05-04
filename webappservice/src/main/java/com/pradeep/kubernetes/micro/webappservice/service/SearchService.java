@@ -37,6 +37,12 @@ public class SearchService {
 			return searchFeignClient.getStatus() ;
 		}
 	 
+	 public String simulateErrorUsingFeignClient() {
+		 logger.debug("Inside SearchService simulateErrorUsingFeignClient");
+			return searchFeignClient.simulateErrorUsingFeignClient() ;
+		}
+	 
+	 
 	 public Mono<String> getErrorStringFromSearchService() {
 		 logger.debug("Inside SearchService checkErrorString");
 		 
