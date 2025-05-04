@@ -38,4 +38,6 @@ public class WebAppController {
 		logger.debug("Inside check3 getMessageFromDB");
 		return searchService.getMessageFromDB();
 	}
+	
+	
 }

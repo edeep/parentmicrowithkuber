@@ -9,7 +9,14 @@ public class WebClientConfig {
     @Bean
     public WebClient webClient(WebClient.Builder builder) {
         return builder
-                .baseUrl("http://search-service:80") // Default base URL (optional)
+                .baseUrl("http://localhost:8033") // Default base URL (optional)
                 .build();
     }
+    
+    /*@Bean
+    public WebClient webClient(WebClient.Builder builder) {
+        return builder
+                .baseUrl("http://search-service:80") // Default base URL (optional)
+                .build();
+    }*/
 }

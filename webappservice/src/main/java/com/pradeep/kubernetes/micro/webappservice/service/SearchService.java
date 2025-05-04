@@ -2,9 +2,12 @@ package com.pradeep.kubernetes.micro.webappservice.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import com.pradeep.kubernetes.micro.webappservice.exception.CustomResourceNotFoundException;
+import com.pradeep.kubernetes.micro.webappservice.exception.ErrorResponse;
 import com.pradeep.kubernetes.micro.webappservice.inferfaces.SearchFeignClient;
 
 import reactor.core.publisher.Mono;
@@ -33,4 +36,23 @@ public class SearchService {
 		 logger.debug("Inside SearchService getStatusUsingFeignClient");
 			return searchFeignClient.getStatus() ;
 		}
+	 
+	 public Mono<String> getErrorStringFromSearchService() {
+		 logger.debug("Inside SearchService checkErrorString");
+		 
+		 return webClient.get()
+	                .uri("checkErrorString")
+	                .retrieve()
+	                .onStatus(status -> status == HttpStatus.NOT_FOUND, response -> {
+	                    return response.bodyToMono(ErrorResponse.class)
+	                            .flatMap(body -> Mono.error(
+	                            		new CustomResourceNotFoundException("Message from Search Service : " + 
+	                            body.getMessage())));
+	                })
+	                .bodyToMono(String.class);
+		 
+		 
+		 
+		 
+	    }
 }
